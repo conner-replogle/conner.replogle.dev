@@ -4,7 +4,7 @@ export const headerData = {
   links:[
     
       { text: 'Home', href: '/' },
-      { text: 'Resume', href: '/public/conner-replogle.pdf' },
+      { text: 'Resume', href: '/conner-replogle.pdf' },
       { text: 'Blog', href: '#blog' },
       { text: 'Github', href: 'https://github.com/conner-replogle' },
     
@@ -23,7 +23,7 @@ export const footerData = {
     },
     {
       text: "Resume",
-      href:"/public/conner-replogle.pdf"
+      href:"/conner-replogle.pdf"
     },
 
     {
