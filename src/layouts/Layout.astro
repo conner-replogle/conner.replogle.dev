@@ -41,7 +41,13 @@ const { language, textDirection } = I18N;
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight">
-    <slot />
+    <main
+      class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center p-4"
+    >
+      <div class="w-full max-w-6xl">
+        <slot />
+      </div>
+    </main>
 
     <BasicScripts />
   </body>

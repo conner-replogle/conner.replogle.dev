@@ -1,16 +1,14 @@
 ---
 import Layout from '~/layouts/Layout.astro';
 import Terminal from '~/components/Terminal.astro';
-
+import TerminalWindow from '~/components/TerminalWindow.astro';
 const metadata = {
   title: 'Conner Replogle | Portfolio',
 };
 ---
 
 <Layout metadata={metadata}>
-  <main class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center p-4">
-    <div class="w-full max-w-6xl">
-      <Terminal />
-    </div>
-  </main>
+  <TerminalWindow title="Home">
+    <Terminal />
+  </TerminalWindow>
 </Layout>

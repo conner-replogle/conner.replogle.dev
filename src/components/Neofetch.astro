@@ -1,13 +1,16 @@
 ---
 // Neofetch Component
 
-
-
+type Props = {
+  entries: Record<string, { text: string; href?: string }>;
+};
+const { entries } = Astro.props;
 ---
 
 <div class="neofetch-display">
   <div class="ascii-art">
-    <pre class="ascii-logo">
+    <pre
+      class="ascii-logo">
         <slot name="logo">
        ╔═══════════════════════════════════════╗
        ║                                       ║
@@ -32,7 +35,22 @@
   </div>
 
   <div class="system-info">
-    <slot></slot>
+    {
+      Object.entries(entries).map(([key, { href, text }], i) => (
+        <div class="info-line" data-delay={i * 100}>
+          <span class="key terminal-text">{key}:</span>
+          {href && href.length != 0 ? (
+            <span class="value">
+              <a class="terminal-text" href={href}>
+                {text}
+              </a>
+            </span>
+          ) : (
+            <span class="value terminal-text">{text}</span>
+          )}
+        </div>
+      ))
+    }
   </div>
 </div>
 
@@ -68,57 +86,74 @@
     flex-direction: column;
     gap: 8px;
   }
-   /* Mobile responsiveness */
+
+  /* Mobile responsiveness */
   @media (max-width: 768px) {
     .neofetch-display {
       grid-template-columns: 1fr;
       gap: 20px;
     }
-    
+
     .ascii-logo {
       font-size: 7px;
     }
-    
+
     .key {
       min-width: 100px;
-      font-size: 12px;
     }
-    
+
     .value {
-      font-size: 12px;
       word-break: break-word;
-    }
-    
-    .terminal-body {
-      padding: 15px;
-    }
-
-    .terminal-header {
-      padding: 10px 12px;
-    }
-
-    .terminal-title {
-      font-size: 12px;
     }
 
     .info-line {
-      flex-wrap: wrap;
       gap: 4px;
     }
   }
 
   @media (max-width: 480px) {
-    .ascii-logo {
-      font-size: 5px;
+    .ascii-art {
+      display: none;
     }
-    
+
     .key {
       min-width: 80px;
-      font-size: 11px;
     }
-    
+
     .value {
-      font-size: 11px;
+      text-wrap: initial;
+    }
+  }
+
+  .info-line {
+    display: flex;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeInSlide 0.5s ease-out forwards;
+  }
+
+  .key {
+    color: #00ffff;
+    font-weight: bold;
+    min-width: 100px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  }
+
+  .value {
+    color: #ffffff;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+  }
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 </style>

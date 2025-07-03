@@ -1,6 +1,6 @@
 ---
-title: "Edge Computing API"
-description: "A high-performance API built with Cloudflare Workers for global edge computing, featuring sub-100ms response times worldwide."
+title: "Whitebox Sudo Camera"
+description: "A Open Source Security Camera"
 technologies: ["Cloudflare Workers", "TypeScript", "WebAssembly", "D1 Database"]
 github: "https://github.com/conner-replogle/edge-api"
 featured: true

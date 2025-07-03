@@ -38,22 +38,15 @@
     border-bottom-color: #ff00ff;
   }
    @media (max-width: 768px) {
-
-    
     .terminal-text {
-      font-size: 12px;
+      font-size: 13px;
       word-break: break-word;
     }
-    
-  
   }
 
   @media (max-width: 480px) {
-  
-
-    
     .terminal-text {
-      font-size: 11px;
+      font-size: 14px;
     }
   }
 }

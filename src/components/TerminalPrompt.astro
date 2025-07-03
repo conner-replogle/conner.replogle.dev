@@ -1,37 +1,35 @@
 ---
 // Terminal Prompt Component
 type Props = {
-    blinking?: boolean;
-}
-const { blinking = false } = Astro.props;
-
+  blinking?: boolean;
+  directory?: string;
+};
+const { blinking = false, directory = '' } = Astro.props;
 ---
 
 <div class="terminal-prompt terminal-text">
-  <span class="user">conner@portfolio</span>:<span class="path">~</span>$ <slot></slot> {
-    blinking && <span class="cursor blinking">█</span>
-  }
+  <span class="user">conner@portfolio</span>:<span class="path">~{directory}</span>$ <slot />
+  {blinking && <span class="cursor blinking">█</span>}
 
-<style>
-  .terminal-prompt {
-    margin-bottom: 16px;
-   
-  }
+  <style>
+    .terminal-prompt {
+      /* margin-bottom: 16px; */
+    }
     .terminal-prompt .cursor {
-        color: #00ff00;
-        animation: blink 1s infinite;
+      color: #00ff00;
+      animation: blink 1s infinite;
     }
 
+    .user {
+      color: #ff00ff;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+    }
 
-  .user {
-    color: #ff00ff;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
-  }
-
-  .path {
-    color: #00ffff;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-  }
-</style>
+    .path {
+      color: #00ffff;
+      font-weight: bold;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    }
+  </style>
+</div>

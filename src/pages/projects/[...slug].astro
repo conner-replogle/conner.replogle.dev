@@ -2,75 +2,79 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ProjectTerminal from '~/components/ProjectTerminal.astro';
+import TerminalPrompt from '~/components/TerminalPrompt.astro';
+import TerminalWindow from '~/components/TerminalWindow.astro';
+export const getStaticPaths = async () => {
+  const projects = await getCollection('project');
 
-export const getStaticPaths =  async () => {
-    const projects = await getCollection('project');
-
-  return projects.map(project => ({
-    params: { slug: project.slug },
-  }));
+  return [
+    {
+      params: { slug: '' },
+    },
+    ...projects.map((project) => ({
+      params: { slug: project.slug },
+    })),
+  ];
 };
 
-const {slug} = Astro.params;
-
+const { slug } = Astro.params;
 
 const projects = await getCollection('project');
 
-
 // Sort projects: featured first, then by date
-const sortedProjects = projects.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  
-  const dateA = a.data.endDate || a.data.startDate || new Date(0);
-  const dateB = b.data.endDate || b.data.startDate || new Date(0);
-  return dateB.getTime() - dateA.getTime();
-}).map(project => ({
-  id: project.slug,
-  title: project.data.title,
-  description: project.data.description,
-  technologies: project.data.technologies,
-  github: project.data.github,
-  demo: project.data.demo,
-  status: project.data.status || 'planned',
-  featured: project.data.featured || false
-}));
+const sortedProjects = projects
+  .sort((a, b) => {
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+
+    const dateA = a.data.endDate || a.data.startDate || new Date(0);
+    const dateB = b.data.endDate || b.data.startDate || new Date(0);
+    return dateB.getTime() - dateA.getTime();
+  })
+  .map((project) => ({
+    id: project.slug,
+    title: project.data.title,
+    description: project.data.description,
+    technologies: project.data.technologies,
+    github: project.data.github,
+    demo: project.data.demo,
+    status: project.data.status || 'planned',
+    featured: project.data.featured || false,
+  }));
 
 const statusColors = {
   completed: '#00ff00',
   'in-progress': '#ffff00',
-  planned: '#ff00ff'
+  planned: '#ff00ff',
 };
 
 const statusIcons = {
   completed: '✓',
   'in-progress': '⚠',
-  planned: '◯'
+  planned: '◯',
 };
-
 
 console.log(`Project slug: ${slug}`);
 
-
-const project = sortedProjects.find(p => p.id === slug);
-
-if (!project) {
-  throw new Error(`Project with title "${slug}" not found.`);
+const project = sortedProjects.find((p) => p.id === slug);
+var metadata;
+if (project) {
+  metadata = {
+    title: `${project.title} | Conner Replogle`,
+    description: project.description,
+  };
+} else {
+  metadata = {
+    title: `Projects | Conner Replogle`,
+    description: 'All of my projects',
+  };
 }
-
-const metadata = {
-  title: `${project.title} | Conner Replogle`,
-  description: project.description,
-};
 ---
 
 <Layout metadata={metadata}>
-  <main class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-4">
-    <div class="max-w-6xl mx-auto">
-  
-
-      <!-- Project Terminal -->
-      <ProjectTerminal projects={sortedProjects} activeProject={project} />
-    </div>
-  </main>
+  <TerminalWindow title="~/projects">
+    <TerminalPrompt> cd ./projects </TerminalPrompt>
+    <!-- Project Terminal -->
+    <ProjectTerminal projects={sortedProjects} activeProject={project} />
+  </TerminalWindow>
 </Layout>

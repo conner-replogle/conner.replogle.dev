@@ -1,191 +1,100 @@
 ---
-import Neofetch from "./Neofetch.astro";
-import TerminalPrompt from "./TerminalPrompt.astro";
-import TerminalWindow from "./TerminalWindow.astro";
+import Neofetch from './Neofetch.astro';
+import TerminalPrompt from './TerminalPrompt.astro';
+import TerminalWindow from './TerminalWindow.astro';
 
 // Terminal Neofetch Component with 80s Retro Style
 ---
 
-
-<TerminalWindow title="conner@portfolio:~">
-    <TerminalPrompt>
-      neofetch
-    </TerminalPrompt>
-    <Neofetch>
-      <div class="info-line" data-delay="0">
-        <span class="key">User:</span>
-        <span class="value">Conner Replogle</span>
-      </div>
-      <div class="info-line" data-delay="100">
-        <span class="key">Role:</span>
-        <span class="value">Software Engineer Intern</span>
-      </div>
-      <div class="info-line" data-delay="200">
-        <span class="key">Location:</span>
-        <span class="value">Magnolia, TX</span>
-      </div>
-      <div class="info-line" data-delay="300">
-        <span class="key">Education:</span>
-        <span class="value">UT Dallas - Computer Engineering</span>
-      </div>
-      <div class="info-line" data-delay="400">
-        <span class="key">Internship:</span>
-        <span class="value">Cloudflare SWE Intern 2025 Summer</span>
-      </div>
-      <div class="info-line" data-delay="500">
-        <span class="key">Hobbies:</span>
-        <span class="value">Golf, MTB, Gym</span>
-      </div>
-      <div class="info-line" data-delay="600">
-        <span class="key">Languages:</span>
-        <span class="value">JavaScript, TypeScript, Python, Go</span>
-      </div>
-      <div class="info-line" data-delay="700">
-        <span class="key">Frontend:</span>
-        <span class="value">React, Next.js, Astro, Tailwind</span>
-      </div>
-      <div class="info-line" data-delay="800">
-        <span class="key">Backend:</span>
-        <span class="value">Node.js, Workers, Edge Computing</span>
-      </div>
-      <div class="info-line" data-delay="900">
-        <span class="key">Cloud:</span>
-        <span class="value">Cloudflare, AWS, Serverless</span>
-      </div>
-      <div class="info-line" data-delay="1000">
-        <span class="key">Focus:</span>
-        <span class="value">Web Performance & Edge Computing</span>
-      </div>
-      <div class="info-line" data-delay="1100">
-        <span class="key">Status:</span>
-        <span class="value">Cloudflare Intern Summer 2025</span>
-      </div>
-      <div class="info-line" data-delay="1200">
-        <span class="key">GitHub:</span>
-        <span class="value">
-          <a href="https://github.com/conner-replogle" target="_blank" class="terminal-text">
-            github.com/conner-replogle
-          </a>
-        </span>
-      </div>
-      <div class="info-line" data-delay="1300">
-        <span class="key">Resume:</span>
-        <span class="value">
-          <a href="/conner-replogle.pdf" target="_blank" class="terminal-text">
-            ./conner-replogle.pdf
-          </a>
-        </span>
-      </div>
-      <div class="info-line" data-delay="1400">
-        <span class="key">Portfolio:</span>
-        <span class="value">
-          <a href="/projects" class="terminal-text">
-            ~/projects/
-          </a>
-        </span>
-      </div>
-      <div class="info-line" data-delay="1500">
-        <span class="key">LinkedIn:</span>
-        <span class="value">
-          <a href="https://linkedin.com/in/conner-replogle" target="_blank" class="terminal-text">
-            linkedin.com/in/conner-replogle
-          </a>
-        </span>
-      </div>
-      <div class="info-line" data-delay="1600">
-        <span class="key">Email:</span>
-        <span class="value">
-          <a href="mailto:conner.replogle.jobs@replogle.dev" class="terminal-text">
-            conner.replogle.jobs@replogle.dev
-          </a>
-        </span>
-      </div>
-      <div class="info-line colors-line" data-delay="1700">
-        <span class="key">Colors:</span>
-        <span class="color-blocks">
-          <span class="color-block color-1"></span>
-          <span class="color-block color-2"></span>
-          <span class="color-block color-3"></span>
-          <span class="color-block color-4"></span>
-          <span class="color-block color-5"></span>
-          <span class="color-block color-6"></span>
-          <span class="color-block color-7"></span>
-          <span class="color-block color-8"></span>
-        </span>
-      </div>
-    </Neofetch>
-    <TerminalPrompt blinking />
-
-</TerminalWindow>
-
-<script>
-  // Add some interactive elements
-  document.addEventListener('DOMContentLoaded', function() {
-    // Progressive loading animation
-    const infoLines = document.querySelectorAll('.info-line[data-delay]');
-    infoLines.forEach((line) => {
-      const htmlElement = line as HTMLElement;
-      const delay = parseInt(htmlElement.getAttribute('data-delay') || '0');
-      setTimeout(() => {
-        htmlElement.style.animationDelay = '0s';
-        htmlElement.style.opacity = '1';
-        htmlElement.style.transform = 'translateX(0)';
-      }, delay);
-    });
-
-    // Add hover effects to the terminal
-    const terminal = document.querySelector('.terminal-container');
-    if (terminal) {
-      terminal.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.02)';
-        this.style.transition = 'transform 0.3s ease';
-      });
-      
-      terminal.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-      });
-    }
-
-    // Add click sound effect simulation
-    const terminalBody = document.querySelector('.terminal-body');
-    if (terminalBody) {
-      terminalBody.addEventListener('click', function(event) {
-        // Create a visual feedback
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(0, 255, 255, 0.3);
-          width: 20px;
-          height: 20px;
-          animation: ripple 0.6s ease-out;
-          pointer-events: none;
-        `;
-        
-        const rect = this.getBoundingClientRect();
-        const mouseEvent = event as MouseEvent;
-        const x = mouseEvent.clientX - rect.left - 10;
-        const y = mouseEvent.clientY - rect.top - 10;
-        
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        
-        this.style.position = 'relative';
-        this.appendChild(ripple);
-        
-        setTimeout(() => {
-          if (ripple.parentNode) {
-            ripple.parentNode.removeChild(ripple);
-          }
-        }, 600);
-      });
-    }
-  });
-</script>
-
+<TerminalPrompt> neofetch </TerminalPrompt>
+<Neofetch
+  entries={{
+    User: {
+      text: 'Conner Replogle',
+      href: '',
+    },
+    Role: {
+      text: 'Software Engineer Intern',
+      href: '',
+    },
+    Location: {
+      text: 'Magnolia, TX',
+      href: '',
+    },
+    Education: {
+      text: 'UT Dallas - Computer Engineering',
+      href: '',
+    },
+    Internship: {
+      text: 'Cloudflare SWE Intern 2025 Summer',
+      href: '',
+    },
+    Hobbies: {
+      text: 'Golf, MTB, Gym',
+      href: '',
+    },
+    Languages: {
+      text: 'JavaScript, TypeScript, Python, Go',
+      href: '',
+    },
+    Frontend: {
+      text: 'React, Next.js, Astro, Tailwind',
+      href: '',
+    },
+    Backend: {
+      text: 'Node.js, Workers, Edge Computing',
+      href: '',
+    },
+    Cloud: {
+      text: 'Cloudflare, AWS, Serverless',
+      href: '',
+    },
+    Focus: {
+      text: 'Web Performance & Edge Computing',
+      href: '',
+    },
+    Status: {
+      text: 'Cloudflare Intern Summer 2025',
+      href: '',
+    },
+    GitHub: {
+      text: 'github.com/conner-replogle',
+      href: 'https://github.com/conner-replogle',
+    },
+    Projects: {
+      text: './conner-replogle.pdf',
+      href: '/conner-replogle.pdf',
+    },
+    Portfolio: {
+      text: '~/projects/',
+      href: '/projects',
+    },
+    LinkedIn: {
+      text: 'conner-replogle',
+      href: 'https://linkedin.com/in/conner-replogle',
+    },
+    Email: {
+      text: 'conner@replogle.dev',
+      href: 'mailto:conner@replogle.dev',
+    },
+  }}
+>
+  <!-- <div class="info-line colors-line" data-delay="1700"> -->
+  <!--   <span class="key">Colors:</span> -->
+  <!--   <span class="color-blocks"> -->
+  <!--     <span class="color-block color-1"></span> -->
+  <!--     <span class="color-block color-2"></span> -->
+  <!--     <span class="color-block color-3"></span> -->
+  <!--     <span class="color-block color-4"></span> -->
+  <!--     <span class="color-block color-5"></span> -->
+  <!--     <span class="color-block color-6"></span> -->
+  <!--     <span class="color-block color-7"></span> -->
+  <!--     <span class="color-block color-8"></span> -->
+  <!--   </span> -->
+  <!-- </div> -->
+</Neofetch>
+<TerminalPrompt blinking />
 <style>
- 
-
   .user {
     color: #ff00ff;
     font-weight: bold;
@@ -197,30 +106,6 @@ import TerminalWindow from "./TerminalWindow.astro";
     font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
   }
-
- 
-  .info-line {
-    display: flex;
-    font-size: 14px;
-    line-height: 1.4;
-    opacity: 0;
-    transform: translateX(-10px);
-    animation: fadeInSlide 0.5s ease-out forwards;
-  }
-
-  .key {
-    color: #00ffff;
-    font-weight: bold;
-    min-width: 120px;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-  }
-
-  .value {
-    color: #ffffff;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
-  }
-
-
 
   .colors-line {
     align-items: center;
@@ -238,83 +123,38 @@ import TerminalWindow from "./TerminalWindow.astro";
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .color-1 { background: #ff5f5f; box-shadow: 0 0 5px rgba(255, 95, 95, 0.3); }
-  .color-2 { background: #5fff5f; box-shadow: 0 0 5px rgba(95, 255, 95, 0.3); }
-  .color-3 { background: #ffff5f; box-shadow: 0 0 5px rgba(255, 255, 95, 0.3); }
-  .color-4 { background: #5f5fff; box-shadow: 0 0 5px rgba(95, 95, 255, 0.3); }
-  .color-5 { background: #ff5fff; box-shadow: 0 0 5px rgba(255, 95, 255, 0.3); }
-  .color-6 { background: #5fffff; box-shadow: 0 0 5px rgba(95, 255, 255, 0.3); }
-  .color-7 { background: #ffffff; box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
-  .color-8 { background: #808080; box-shadow: 0 0 5px rgba(128, 128, 128, 0.3); }
-
-  .blinking .cursor {
-    animation: blink 1s infinite;
+  .color-1 {
+    background: #ff5f5f;
+    box-shadow: 0 0 5px rgba(255, 95, 95, 0.3);
   }
-
-  @keyframes fadeInSlide {
-    from {
-      opacity: 0;
-      transform: translateX(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  .color-2 {
+    background: #5fff5f;
+    box-shadow: 0 0 5px rgba(95, 255, 95, 0.3);
   }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+  .color-3 {
+    background: #ffff5f;
+    box-shadow: 0 0 5px rgba(255, 255, 95, 0.3);
   }
-
-  @keyframes ripple {
-    from {
-      transform: scale(0);
-      opacity: 1;
-    }
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
+  .color-4 {
+    background: #5f5fff;
+    box-shadow: 0 0 5px rgba(95, 95, 255, 0.3);
   }
-
-     /* Mobile responsiveness */
-  @media (max-width: 768px) {
-
-    
-    .key {
-      min-width: 100px;
-      font-size: 12px;
-    }
-    
-    .value {
-      font-size: 12px;
-      word-break: break-word;
-    }
-    
-  
-
-    .info-line {
-      flex-wrap: wrap;
-      gap: 4px;
-    }
+  .color-5 {
+    background: #ff5fff;
+    box-shadow: 0 0 5px rgba(255, 95, 255, 0.3);
   }
-
-  @media (max-width: 480px) {
-  
-    
-    .key {
-      min-width: 80px;
-      font-size: 11px;
-    }
-    
-    .value {
-      font-size: 11px;
-    }
+  .color-6 {
+    background: #5fffff;
+    box-shadow: 0 0 5px rgba(95, 255, 255, 0.3);
   }
-
- 
+  .color-7 {
+    background: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  .color-8 {
+    background: #808080;
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.3);
+  }
 
   /* Glow effects for 80s aesthetic */
-  
 </style>

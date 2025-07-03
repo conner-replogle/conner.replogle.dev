@@ -5,7 +5,7 @@ import TerminalWindow from './TerminalWindow.astro';
 import Neofetch from './Neofetch.astro';
 
 interface Project {
-  id : string;
+  id: string;
   title: string;
   description: string;
   technologies: string[];
@@ -14,50 +14,62 @@ interface Project {
   status?: 'completed' | 'in-progress' | 'planned';
   featured?: boolean;
 }
-interface Props{
-    projects: Project[]
-    activeProject?: Project;
+interface Props {
+  projects: Project[];
+  activeProject?: Project;
 }
 
-const {projects , activeProject} = Astro.props;
+const { projects, activeProject } = Astro.props;
 
 const statusColors = {
   completed: '#00ff00',
   'in-progress': '#ffff00',
-  planned: '#ff00ff'
+  planned: '#ff00ff',
 };
 
 const statusIcons = {
   completed: '✓',
   'in-progress': '⚠',
-  planned: '◯'
+  planned: '◯',
 };
 ---
 
-<TerminalWindow title="conner@projects:~">
-    <TerminalPrompt>
-      ls ./projects
-    </TerminalPrompt>
-    {projects.map(({ title, id,description, technologies, github, demo, status, featured }) => (
-      <a class="terminal-text" href={`/projects/${id}`}>{title}.md</a><br/>
-    ))}
-    {activeProject && (
-      <Neofetch>
-        <div class="info-line">
-          <span class="key">Title:</span>
-          <span class="value">{activeProject.title}</span>
-        </div>
-        <div class="info-line">
-          <span class="key">Description:</span>
-          <span class="value">{activeProject.description}</span>
-        </div>
-        <div class="info-line">
-          <span class="key">Technologies:</span>
-          <span class="value">{activeProject.technologies.join(', ')}</span>
-        </div>
-      </Neofetch>
-    )}
-</TerminalWindow>
+<TerminalPrompt directory="/projects"> ls ./ </TerminalPrompt>
+<a class="terminal-text" href={`/`}> .. </a>
+<br />
+
+{
+  projects.map(({ title, id, description, technologies, github, demo, status, featured }) => (
+    <>
+      <a class="terminal-text" href={`/projects/${id}`}>
+        {title}.md
+      </a>
+      <br />
+    </>
+  ))
+}
+{
+  activeProject && (
+    <>
+      <TerminalPrompt directory="/projects">neofetch ./{activeProject.id}.md</TerminalPrompt>
+      <Neofetch
+        entries={{
+          Title: {
+            text: activeProject.title,
+          },
+          Description: {
+            text: activeProject.description,
+          },
+          Demo: {
+            text: activeProject.demo ?? 'Not available',
+          },
+        }}
+      />
+    </>
+  )
+}
+
+<TerminalPrompt blinking />
 
 <style>
   .project-body {
@@ -65,14 +77,8 @@ const statusIcons = {
     background: #0a0a0a;
   }
 
-    </Neofetch>
-  
-</TerminalWindow>
-
-<style>
-  .project-body {
+  </Neofetch > </TerminalWindow > <style > .project-body {
     padding: 20px;
     background: #0a0a0a;
   }
-
 </style>
