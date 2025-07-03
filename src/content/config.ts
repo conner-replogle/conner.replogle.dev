@@ -63,6 +63,22 @@ const postCollection = defineCollection({
   }),
 });
 
+const projectCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    technologies: z.array(z.string()),
+    github: z.string().url().optional(),
+    demo: z.string().url().optional(),
+    image: z.string().optional(),
+    featured: z.boolean().optional(),
+    status: z.enum(['completed', 'in-progress', 'planned']).optional(),
+    startDate: z.date().optional(),
+    endDate: z.date().optional(),
+  }),
+});
+
 export const collections = {
   post: postCollection,
+  project: projectCollection,
 };

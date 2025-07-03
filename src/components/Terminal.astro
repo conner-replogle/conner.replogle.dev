@@ -1,0 +1,517 @@
+---
+// Terminal Neofetch Component with 80s Retro Style
+---
+
+<div class="terminal-container">
+  <div class="terminal-header">
+    <div class="terminal-controls">
+      <div class="control red"></div>
+      <div class="control yellow"></div>
+      <div class="control green"></div>
+    </div>
+    <div class="terminal-title">conner@portfolio:~$</div>
+  </div>
+  
+  <div class="terminal-body">
+    <div class="terminal-prompt">
+      <span class="user">conner@portfolio</span>:<span class="path">~</span>$ neofetch
+    </div>
+    
+    <div class="neofetch-display">
+      <div class="ascii-art">
+        <pre class="ascii-logo">
+   ╔═══════════════════════════════════════╗
+   ║                                       ║
+   ║   ██████╗ ██████╗                     ║
+   ║  ██╔════╝ ██╔══██╗                    ║
+   ║  ██║      ██████╔╝                    ║
+   ║  ██║      ██╔══██╗                    ║
+   ║  ╚██████╗ ██║  ██║                    ║
+   ║   ╚═════╝ ╚═╝  ╚═╝                    ║
+   ║                                       ║
+   ║  ┌─┐┌─┐┌┐┌┌┐┌┌─┐┬─┐                   ║
+   ║  │  │ │││││││├┤ ├┬┘                   ║
+   ║  └─┘└─┘┘└┘┘└┘└─┘┴└─                   ║
+   ║                                       ║
+   ║  ┬─┐┌─┐┌─┐┬  ┌─┐┌─┐┬  ┌─┐             ║
+   ║  ├┬┘├┤ ├─┘│  │ ││ ┬│  ├┤              ║
+   ║  ┴└─└─┘┴  ┴─┘└─┘└─┘┴─┘└─┘             ║
+   ║                                       ║
+   ╚═══════════════════════════════════════╝
+        </pre>
+      </div>
+      
+      <div class="system-info">
+        <div class="info-line" data-delay="0">
+          <span class="key">User:</span>
+          <span class="value">Conner Replogle</span>
+        </div>
+        <div class="info-line" data-delay="100">
+          <span class="key">Role:</span>
+          <span class="value">Software Engineer Intern</span>
+        </div>
+        <div class="info-line" data-delay="200">
+          <span class="key">Location:</span>
+          <span class="value">Magnolia, TX</span>
+        </div>
+        <div class="info-line" data-delay="300">
+          <span class="key">Education:</span>
+          <span class="value">UT Dallas - Computer Engineering</span>
+        </div>
+        <div class="info-line" data-delay="400">
+          <span class="key">Internship:</span>
+          <span class="value">Cloudflare SWE Intern 2025 Summer</span>
+        </div>
+        <div class="info-line" data-delay="500">
+          <span class="key">Hobbies:</span>
+          <span class="value">Golf, MTB, Gym</span>
+        </div>
+        <div class="info-line" data-delay="600">
+          <span class="key">Languages:</span>
+          <span class="value">JavaScript, TypeScript, Python, Go</span>
+        </div>
+        <div class="info-line" data-delay="700">
+          <span class="key">Frontend:</span>
+          <span class="value">React, Next.js, Astro, Tailwind</span>
+        </div>
+        <div class="info-line" data-delay="800">
+          <span class="key">Backend:</span>
+          <span class="value">Node.js, Workers, Edge Computing</span>
+        </div>
+        <div class="info-line" data-delay="900">
+          <span class="key">Cloud:</span>
+          <span class="value">Cloudflare, AWS, Serverless</span>
+        </div>
+        <div class="info-line" data-delay="1000">
+          <span class="key">Focus:</span>
+          <span class="value">Web Performance & Edge Computing</span>
+        </div>
+        <div class="info-line" data-delay="1100">
+          <span class="key">Status:</span>
+          <span class="value">Cloudflare Intern Summer 2025</span>
+        </div>
+        <div class="info-line" data-delay="1200">
+          <span class="key">GitHub:</span>
+          <span class="value">
+            <a href="https://github.com/conner-replogle" target="_blank" class="terminal-link">
+              github.com/conner-replogle
+            </a>
+          </span>
+        </div>
+        <div class="info-line" data-delay="1300">
+          <span class="key">Resume:</span>
+          <span class="value">
+            <a href="/conner-replogle.pdf" target="_blank" class="terminal-link">
+              ./conner-replogle.pdf
+            </a>
+          </span>
+        </div>
+        <div class="info-line" data-delay="1400">
+          <span class="key">Portfolio:</span>
+          <span class="value">
+            <a href="#projects" class="terminal-link">
+              ~/projects/
+            </a>
+          </span>
+        </div>
+        <div class="info-line" data-delay="1500">
+          <span class="key">LinkedIn:</span>
+          <span class="value">
+            <a href="https://linkedin.com/in/conner-replogle" target="_blank" class="terminal-link">
+              linkedin.com/in/conner-replogle
+            </a>
+          </span>
+        </div>
+        <div class="info-line" data-delay="1600">
+          <span class="key">Email:</span>
+          <span class="value">
+            <a href="mailto:conner.replogle.jobs@replogle.dev" class="terminal-link">
+              conner.replogle.jobs@replogle.dev
+            </a>
+          </span>
+        </div>
+        <div class="info-line colors-line" data-delay="1700">
+          <span class="key">Colors:</span>
+          <span class="color-blocks">
+            <span class="color-block color-1"></span>
+            <span class="color-block color-2"></span>
+            <span class="color-block color-3"></span>
+            <span class="color-block color-4"></span>
+            <span class="color-block color-5"></span>
+            <span class="color-block color-6"></span>
+            <span class="color-block color-7"></span>
+            <span class="color-block color-8"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="terminal-prompt blinking">
+      <span class="user">conner@portfolio</span>:<span class="path">~</span>$ <span class="cursor">█</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Add some interactive elements
+  document.addEventListener('DOMContentLoaded', function() {
+    // Progressive loading animation
+    const infoLines = document.querySelectorAll('.info-line[data-delay]');
+    infoLines.forEach((line) => {
+      const htmlElement = line as HTMLElement;
+      const delay = parseInt(htmlElement.getAttribute('data-delay') || '0');
+      setTimeout(() => {
+        htmlElement.style.animationDelay = '0s';
+        htmlElement.style.opacity = '1';
+        htmlElement.style.transform = 'translateX(0)';
+      }, delay);
+    });
+
+    // Add hover effects to the terminal
+    const terminal = document.querySelector('.terminal-container');
+    if (terminal) {
+      terminal.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.02)';
+        this.style.transition = 'transform 0.3s ease';
+      });
+      
+      terminal.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+    }
+
+    // Add click sound effect simulation
+    const terminalBody = document.querySelector('.terminal-body');
+    if (terminalBody) {
+      terminalBody.addEventListener('click', function(event) {
+        // Create a visual feedback
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(0, 255, 255, 0.3);
+          width: 20px;
+          height: 20px;
+          animation: ripple 0.6s ease-out;
+          pointer-events: none;
+        `;
+        
+        const rect = this.getBoundingClientRect();
+        const mouseEvent = event as MouseEvent;
+        const x = mouseEvent.clientX - rect.left - 10;
+        const y = mouseEvent.clientY - rect.top - 10;
+        
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        
+        this.style.position = 'relative';
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+          }
+        }, 600);
+      });
+    }
+  });
+</script>
+
+<style>
+  .terminal-container {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    border-radius: 12px;
+    box-shadow: 
+      0 0 50px rgba(0, 255, 255, 0.3),
+      0 0 100px rgba(255, 0, 255, 0.2),
+      inset 0 0 0 1px rgba(0, 255, 255, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.03) 2px,
+        rgba(0, 255, 255, 0.03) 4px
+      );
+    pointer-events: none;
+  }
+
+  .terminal-header {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  }
+
+  .terminal-controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .control.red {
+    background: linear-gradient(135deg, #ff5f5f 0%, #ff2d2d 100%);
+    box-shadow: 0 0 10px rgba(255, 95, 95, 0.3);
+  }
+
+  .control.yellow {
+    background: linear-gradient(135deg, #ffff5f 0%, #ffff2d 100%);
+    box-shadow: 0 0 10px rgba(255, 255, 95, 0.3);
+  }
+
+  .control.green {
+    background: linear-gradient(135deg, #5fff5f 0%, #2dff2d 100%);
+    box-shadow: 0 0 10px rgba(95, 255, 95, 0.3);
+  }
+
+  .terminal-title {
+    color: #00ffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  }
+
+  .terminal-body {
+    padding: 20px;
+    background: #0a0a0a;
+    min-height: 500px;
+  }
+
+  .terminal-prompt {
+    color: #00ff00;
+    margin-bottom: 16px;
+    font-size: 14px;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+  }
+
+  .user {
+    color: #ff00ff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
+  }
+
+  .path {
+    color: #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  }
+
+  .neofetch-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 20px 0;
+  }
+
+  .ascii-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ascii-logo {
+    color: #ff00ff;
+    font-size: 10px;
+    line-height: 1.1;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .system-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .info-line {
+    display: flex;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeInSlide 0.5s ease-out forwards;
+  }
+
+  .key {
+    color: #00ffff;
+    font-weight: bold;
+    min-width: 120px;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  }
+
+  .value {
+    color: #ffffff;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+  }
+
+  .terminal-link {
+    color: #00ffff;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .terminal-link:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    border-bottom-color: #ff00ff;
+  }
+
+  .colors-line {
+    align-items: center;
+  }
+
+  .color-blocks {
+    display: flex;
+    gap: 4px;
+  }
+
+  .color-block {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .color-1 { background: #ff5f5f; box-shadow: 0 0 5px rgba(255, 95, 95, 0.3); }
+  .color-2 { background: #5fff5f; box-shadow: 0 0 5px rgba(95, 255, 95, 0.3); }
+  .color-3 { background: #ffff5f; box-shadow: 0 0 5px rgba(255, 255, 95, 0.3); }
+  .color-4 { background: #5f5fff; box-shadow: 0 0 5px rgba(95, 95, 255, 0.3); }
+  .color-5 { background: #ff5fff; box-shadow: 0 0 5px rgba(255, 95, 255, 0.3); }
+  .color-6 { background: #5fffff; box-shadow: 0 0 5px rgba(95, 255, 255, 0.3); }
+  .color-7 { background: #ffffff; box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+  .color-8 { background: #808080; box-shadow: 0 0 5px rgba(128, 128, 128, 0.3); }
+
+  .blinking .cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes ripple {
+    from {
+      transform: scale(0);
+      opacity: 1;
+    }
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .neofetch-display {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .ascii-logo {
+      font-size: 7px;
+    }
+    
+    .key {
+      min-width: 100px;
+      font-size: 12px;
+    }
+    
+    .value {
+      font-size: 12px;
+      word-break: break-word;
+    }
+    
+    .terminal-body {
+      padding: 15px;
+    }
+
+    .terminal-header {
+      padding: 10px 12px;
+    }
+
+    .terminal-title {
+      font-size: 12px;
+    }
+
+    .info-line {
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ascii-logo {
+      font-size: 5px;
+    }
+    
+    .key {
+      min-width: 80px;
+      font-size: 11px;
+    }
+    
+    .value {
+      font-size: 11px;
+    }
+  }
+
+  /* Glow effects for 80s aesthetic */
+  .terminal-container {
+    animation: subtle-glow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes subtle-glow {
+    0% {
+      box-shadow: 
+        0 0 50px rgba(0, 255, 255, 0.3),
+        0 0 100px rgba(255, 0, 255, 0.2),
+        inset 0 0 0 1px rgba(0, 255, 255, 0.1);
+    }
+    100% {
+      box-shadow: 
+        0 0 60px rgba(0, 255, 255, 0.4),
+        0 0 120px rgba(255, 0, 255, 0.3),
+        inset 0 0 0 1px rgba(0, 255, 255, 0.2);
+    }
+  }
+</style>
