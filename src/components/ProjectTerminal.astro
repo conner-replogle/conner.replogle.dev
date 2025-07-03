@@ -1,8 +1,11 @@
 ---
+import type { idText } from 'typescript';
 import TerminalPrompt from './TerminalPrompt.astro';
 import TerminalWindow from './TerminalWindow.astro';
+import Neofetch from './Neofetch.astro';
 
 interface Project {
+  id : string;
   title: string;
   description: string;
   technologies: string[];
@@ -13,9 +16,10 @@ interface Project {
 }
 interface Props{
     projects: Project[]
+    activeProject?: Project;
 }
 
-const {projects } = Astro.props;
+const {projects , activeProject} = Astro.props;
 
 const statusColors = {
   completed: '#00ff00',
@@ -34,10 +38,35 @@ const statusIcons = {
     <TerminalPrompt>
       ls ./projects
     </TerminalPrompt>
-    {projects.map(({ title, description, technologies, github, demo, status, featured }) => (
-      <a class="terminal-text" href={`/projects/${title}`}>{title}.md</a><br/>
+    {projects.map(({ title, id,description, technologies, github, demo, status, featured }) => (
+      <a class="terminal-text" href={`/projects/${id}`}>{title}.md</a><br/>
     ))}
-  </div>
+    {activeProject && (
+      <Neofetch>
+        <div class="info-line">
+          <span class="key">Title:</span>
+          <span class="value">{activeProject.title}</span>
+        </div>
+        <div class="info-line">
+          <span class="key">Description:</span>
+          <span class="value">{activeProject.description}</span>
+        </div>
+        <div class="info-line">
+          <span class="key">Technologies:</span>
+          <span class="value">{activeProject.technologies.join(', ')}</span>
+        </div>
+      </Neofetch>
+    )}
+</TerminalWindow>
+
+<style>
+  .project-body {
+    padding: 20px;
+    background: #0a0a0a;
+  }
+
+    </Neofetch>
+  
 </TerminalWindow>
 
 <style>

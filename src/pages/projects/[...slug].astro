@@ -1,9 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import ProjectTerminal from '~/components/ProjectTerminal.astro';
 
+export const getStaticPaths =  async () => {
+    const projects = await getCollection('project');
+
+  return projects.map(project => ({
+    params: { slug: project.slug },
+  }));
+};
+
+const {slug} = Astro.params;
+
+
 const projects = await getCollection('project');
+
 
 // Sort projects: featured first, then by date
 const sortedProjects = projects.sort((a, b) => {
@@ -36,9 +48,19 @@ const statusIcons = {
   planned: '◯'
 };
 
+
+console.log(`Project slug: ${slug}`);
+
+
+const project = sortedProjects.find(p => p.id === slug);
+
+if (!project) {
+  throw new Error(`Project with title "${slug}" not found.`);
+}
+
 const metadata = {
-  title: 'Projects | Conner Replogle',
-  description: 'A collection of my software development projects, from web applications to edge computing solutions.',
+  title: `${project.title} | Conner Replogle`,
+  description: project.description,
 };
 ---
 
@@ -48,7 +70,7 @@ const metadata = {
   
 
       <!-- Project Terminal -->
-      <ProjectTerminal projects={sortedProjects} />
+      <ProjectTerminal projects={sortedProjects} activeProject={project} />
     </div>
   </main>
 </Layout>

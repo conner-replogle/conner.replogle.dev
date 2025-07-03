@@ -1,10 +1,14 @@
 ---
 // Neofetch Component
+
+
+
 ---
 
 <div class="neofetch-display">
   <div class="ascii-art">
     <pre class="ascii-logo">
+        <slot name="logo">
        ╔═══════════════════════════════════════╗
        ║                                       ║
        ║   ██████╗ ██████╗                     ║
@@ -23,6 +27,7 @@
        ║  ┴└─└─┘┴  ┴─┘└─┘└─┘┴─┘└─┘             ║
        ║                                       ║
        ╚═══════════════════════════════════════╝
+       </slot>
     </pre>
   </div>
 

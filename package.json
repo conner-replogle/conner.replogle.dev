@@ -19,7 +19,9 @@
     "check:prettier": "prettier --check .",
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
-    "fix:prettier": "prettier -w ."
+    "fix:prettier": "prettier -w .",
+     "build-deploy": "pnpm run build && pnpm run deploy",
+    "deploy":"pnpm dlx wrangler pages deploy dist --project-name conner-replogle-dev"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.8",
