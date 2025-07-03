@@ -18,6 +18,44 @@
   .text-muted {
     color: var(--aw-color-text-muted);
   }
+  .terminal-text{
+    color: #00ff00;
+    font-size: 14px;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+  }
+  
+  a.terminal-text  {
+    color: #00ffff;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  a.terminal-text:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    border-bottom-color: #ff00ff;
+  }
+   @media (max-width: 768px) {
+
+    
+    .terminal-text {
+      font-size: 12px;
+      word-break: break-word;
+    }
+    
+  
+  }
+
+  @media (max-width: 480px) {
+  
+
+    
+    .terminal-text {
+      font-size: 11px;
+    }
+  }
 }
 
 @layer components {

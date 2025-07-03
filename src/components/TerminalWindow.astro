@@ -14,10 +14,56 @@ const { title } = Astro.props;
     </div>
     <div class="terminal-title">{title}</div>
   </div>
-  <slot></slot>
+  <div class="terminal-body">
+  <slot>
+
+  </slot>
+    </div>
 </div>
 
 <style>
+ @media (max-width: 768px) {
+
+    
+    .terminal-body {
+      padding: 15px;
+    }
+
+    .terminal-header {
+      padding: 10px 12px;
+    }
+
+    .terminal-title {
+      font-size: 12px;
+    }
+
+
+  }
+
+
+.terminal-window {
+    animation: subtle-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes subtle-glow {
+0% {
+    box-shadow: 
+    0 0 50px rgba(0, 255, 255, 0.3),
+    0 0 100px rgba(255, 0, 255, 0.2),
+    inset 0 0 0 1px rgba(0, 255, 255, 0.1);
+}
+100% {
+    box-shadow: 
+    0 0 60px rgba(0, 255, 255, 0.4),
+    0 0 120px rgba(255, 0, 255, 0.3),
+    inset 0 0 0 1px rgba(0, 255, 255, 0.2);
+}
+}
+.terminal-body {
+    padding: 20px;
+    background: #0a0a0a;
+    min-height: 500px;
+  }
 .terminal-window {
   font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
   background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
@@ -75,3 +121,67 @@ const { title } = Astro.props;
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 </style>
+<script is:inline>
+ // Add some interactive elements
+  document.addEventListener('DOMContentLoaded', function() {
+    // Progressive loading animation
+    const infoLines = document.querySelectorAll('.info-line[data-delay]');
+    infoLines.forEach((line) => {
+      const htmlElement = line ;
+      const delay = parseInt(htmlElement.getAttribute('data-delay') || '0');
+      setTimeout(() => {
+        htmlElement.style.animationDelay = '0s';
+        htmlElement.style.opacity = '1';
+        htmlElement.style.transform = 'translateX(0)';
+      }, delay);
+    });
+
+    // Add hover effects to the terminal
+    const terminal = document.querySelector('.terminal-window');
+    if (terminal) {
+      terminal.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.02)';
+        this.style.transition = 'transform 0.3s ease';
+      });
+      
+      terminal.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+    }
+
+    // Add click sound effect simulation
+    const terminalBody = document.querySelector('.terminal-body');
+    if (terminalBody) {
+      terminalBody.addEventListener('click', function(event) {
+        // Create a visual feedback
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(0, 255, 255, 0.3);
+          width: 20px;
+          height: 20px;
+          animation: ripple 0.6s ease-out;
+          pointer-events: none;
+        `;
+        
+        const rect = this.getBoundingClientRect();
+        const mouseEvent = event ;
+        const x = mouseEvent.clientX - rect.left - 10;
+        const y = mouseEvent.clientY - rect.top - 10;
+        
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        
+        this.style.position = 'relative';
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          if (ripple.parentNode) {
+            ripple.parentNode.removeChild(ripple);
+          }
+        }, 600);
+      });
+    }
+  });
+</script>

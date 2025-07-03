@@ -1,4 +1,5 @@
 ---
+import TerminalPrompt from './TerminalPrompt.astro';
 import TerminalWindow from './TerminalWindow.astro';
 
 interface Project {
@@ -30,53 +31,11 @@ const statusIcons = {
 ---
 
 <TerminalWindow title="conner@projects:~">
-  <div class="project-body">
+    <TerminalPrompt>
+      ls ./projects
+    </TerminalPrompt>
     {projects.map(({ title, description, technologies, github, demo, status, featured }) => (
-      <div class="project-content">
-        <div class="project-info">
-          <div class="info-line">
-            <span class="key">Project:</span>
-            <span class="value">{title}</span>
-            {featured && <span class="featured-badge">★ FEATURED</span>}
-          </div>
-          <div class="info-line">
-            <span class="key">Status:</span>
-            <span class="value" style={`color: ${statusColors[status]}`}>
-              {statusIcons[status]} {status.replace('-', ' ').toUpperCase()}
-            </span>
-          </div>
-          <div class="info-line">
-            <span class="key">Description:</span>
-            <span class="value">{description}</span>
-          </div>
-          <div class="info-line">
-            <span class="key">Tech Stack:</span>
-            <span class="value">{technologies.join(', ')}</span>
-          </div>
-          <div class="project-links">
-            {github && (
-              <div class="info-line">
-                <span class="key">Repository:</span>
-                <span class="value">
-                  <a href={github} target="_blank" class="terminal-link">
-                    git clone {github}
-                  </a>
-                </span>
-              </div>
-            )}
-            {demo && (
-              <div class="info-line">
-                <span class="key">Live Demo:</span>
-                <span class="value">
-                  <a href={demo} target="_blank" class="terminal-link">
-                    curl {demo}
-                  </a>
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <a class="terminal-text" href={`/projects/${title}`}>{title}.md</a><br/>
     ))}
   </div>
 </TerminalWindow>
@@ -86,4 +45,5 @@ const statusIcons = {
     padding: 20px;
     background: #0a0a0a;
   }
+
 </style>
