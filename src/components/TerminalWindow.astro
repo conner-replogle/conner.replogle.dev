@@ -5,16 +5,16 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<div class="terminal-window">
-  <div class="terminal-header">
-    <div class="terminal-controls">
-      <div class="control red"></div>
-      <div class="control yellow"></div>
-      <div class="control green"></div>
-    </div>
-    <div class="terminal-title">{title}</div>
-  </div>
-  <div class="terminal-body">
+<div class="terminal-window w-full h-full overflow-y-scroll">
+  <!-- <div class="terminal-header"> -->
+  <!--   <div class="terminal-controls"> -->
+  <!--     <div class="control red"></div> -->
+  <!--     <div class="control yellow"></div> -->
+  <!--     <div class="control green"></div> -->
+  <!--   </div> -->
+  <!--   <div class="terminal-title">{title}</div> -->
+  <!-- </div> -->
+  <div class="terminal-body h-full">
     <slot />
   </div>
 </div>
@@ -56,17 +56,13 @@ const { title } = Astro.props;
     padding: 20px;
     background: #0a0a0a;
     min-height: 500px;
+    overflow-y: auto; /* Enable scrolling */
   }
   .terminal-window {
     font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
     border-radius: 12px;
-    box-shadow:
-      0 0 50px rgba(0, 255, 255, 0.3),
-      0 0 100px rgba(255, 0, 255, 0.2),
-      inset 0 0 0 1px rgba(0, 255, 255, 0.1);
     max-width: 900px;
-    margin: 0 auto;
     position: relative;
     overflow: hidden;
   }
@@ -114,7 +110,7 @@ const { title } = Astro.props;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
   }
 </style>
-<script is:inline>
+<!-- <script is:inline>
   // Add some interactive elements
   document.addEventListener('DOMContentLoaded', function () {
     // Progressive loading animation
@@ -177,4 +173,4 @@ const { title } = Astro.props;
       });
     }
   });
-</script>
+</script> -->

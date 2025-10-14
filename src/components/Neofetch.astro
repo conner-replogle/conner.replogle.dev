@@ -69,11 +69,11 @@ const { entries } = Astro.props;
   }
 
   .ascii-logo {
-    color: #ff00ff;
+    color: #ff0000;
     font-size: 10px;
     line-height: 1.1;
     text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
-    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    background: linear-gradient(135deg, #ff0000 0%, #00ffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -139,6 +139,8 @@ const { entries } = Astro.props;
     font-weight: bold;
     min-width: 100px;
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    text-wrap: nowrap;
+    margin-right: 1rem;
   }
 
   .value {

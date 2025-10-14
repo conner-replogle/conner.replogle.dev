@@ -4,14 +4,15 @@ import Layout from '../../layouts/Layout.astro';
 import ProjectTerminal from '~/components/ProjectTerminal.astro';
 import TerminalPrompt from '~/components/TerminalPrompt.astro';
 import TerminalWindow from '~/components/TerminalWindow.astro';
+
+import type { CollectionEntry } from 'astro:content';
 export const getStaticPaths = async () => {
   const projects = await getCollection('project');
-
   return [
     {
       params: { slug: '' },
     },
-    ...projects.map((project) => ({
+    ...projects.map( (project) =>  ({
       params: { slug: project.slug },
     })),
   ];
@@ -22,7 +23,7 @@ const { slug } = Astro.params;
 const projects = await getCollection('project');
 
 // Sort projects: featured first, then by date
-const sortedProjects = projects
+const sortedProjects: CollectionEntry<'project'>[] = projects
   .sort((a, b) => {
     if (a.data.featured && !b.data.featured) return -1;
     if (!a.data.featured && b.data.featured) return 1;
@@ -31,16 +32,6 @@ const sortedProjects = projects
     const dateB = b.data.endDate || b.data.startDate || new Date(0);
     return dateB.getTime() - dateA.getTime();
   })
-  .map((project) => ({
-    id: project.slug,
-    title: project.data.title,
-    description: project.data.description,
-    technologies: project.data.technologies,
-    github: project.data.github,
-    demo: project.data.demo,
-    status: project.data.status || 'planned',
-    featured: project.data.featured || false,
-  }));
 
 const statusColors = {
   completed: '#00ff00',
@@ -56,12 +47,12 @@ const statusIcons = {
 
 console.log(`Project slug: ${slug}`);
 
-const project = sortedProjects.find((p) => p.id === slug);
+const project = sortedProjects.find((p) => p.slug === slug);
 var metadata;
 if (project) {
   metadata = {
-    title: `${project.title} | Conner Replogle`,
-    description: project.description,
+    title: `${project.data.title} | Conner Replogle`,
+    description: project.data.description,
   };
 } else {
   metadata = {
@@ -69,12 +60,17 @@ if (project) {
     description: 'All of my projects',
   };
 }
+
+const projectsData = sortedProjects.map((p) => ({
+  slug: p.slug,
+  ...p.data,
+}));
 ---
 
 <Layout metadata={metadata}>
   <TerminalWindow title="~/projects">
     <TerminalPrompt> cd ./projects </TerminalPrompt>
     <!-- Project Terminal -->
-    <ProjectTerminal projects={sortedProjects} activeProject={project} />
+    <ProjectTerminal projects={projectsData} activeProject={project} />
   </TerminalWindow>
 </Layout>

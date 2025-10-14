@@ -4,7 +4,7 @@ import { visit } from 'unist-util-visit';
 import type { MarkdownAstroData, RehypePlugin, RemarkPlugin } from '@astrojs/markdown-remark';
 
 export const readingTimeRemarkPlugin: RemarkPlugin = () => {
-  return function (tree, file) {
+  return function(tree, file) {
     const textOnPage = toString(tree);
     const readingTime = Math.ceil(getReadingTime(textOnPage).minutes);
 
@@ -13,7 +13,7 @@ export const readingTimeRemarkPlugin: RemarkPlugin = () => {
 };
 
 export const responsiveTablesRehypePlugin: RehypePlugin = () => {
-  return function (tree) {
+  return function(tree) {
     if (!tree.children) return;
 
     for (let i = 0; i < tree.children.length; i++) {
@@ -36,10 +36,10 @@ export const responsiveTablesRehypePlugin: RehypePlugin = () => {
 };
 
 export const lazyImagesRehypePlugin: RehypePlugin = () => {
-  return function (tree) {
+  return function(tree) {
     if (!tree.children) return;
 
-    visit(tree, 'element', function (node) {
+    visit(tree, 'element', function(node) {
       if (node.tagName === 'img') {
         node.properties.loading = 'lazy';
       }

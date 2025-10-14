@@ -1,19 +1,19 @@
 ---
 title: "Whitebox Sudo Camera"
-description: "A Open Source Security Camera"
-technologies: ["Cloudflare Workers", "TypeScript", "WebAssembly", "D1 Database"]
-github: "https://github.com/conner-replogle/edge-api"
+description: "Open Source Camera with PCB"
+technologies: ["Vite", "Go", "WebRTC", "Websockets", "Embedded Systems", "PCB Design", "C"]
+github: "https://github.com/whiteboxcam/sudocam"
 featured: true
 status: "in-progress"
-startDate: 2024-11-01
+startDate: 2025-01-31
 ---
+Open Source Security Camera
 
-A globally distributed API leveraging Cloudflare's edge network for ultra-low latency responses:
+Built a completely homegrown security camera, including the camera firmware, server, and client for viewing.
 
-- **Edge Computing**: Deployed across 200+ data centers worldwide
-- **Sub-100ms Response Times**: Optimized for global performance
-- **WebAssembly Integration**: High-performance computation at the edge
-- **D1 Database**: Serverless SQL database with global replication
-- **TypeScript**: Full type safety and modern development experience
 
-This project demonstrates advanced edge computing concepts and showcases the power of serverless architecture for building globally distributed applications.
+#### Features
+ - Recording
+ - Low Latency Streaming
+ - Object Detection
+

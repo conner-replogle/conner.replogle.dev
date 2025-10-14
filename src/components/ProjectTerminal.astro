@@ -1,25 +1,22 @@
 ---
-import type { idText } from 'typescript';
 import TerminalPrompt from './TerminalPrompt.astro';
-import TerminalWindow from './TerminalWindow.astro';
 import Neofetch from './Neofetch.astro';
+import type { Project } from '~/types';
+import type { CollectionEntry } from 'astro:content';
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  technologies: string[];
-  github?: string;
-  demo?: string;
-  status?: 'completed' | 'in-progress' | 'planned';
-  featured?: boolean;
-}
 interface Props {
   projects: Project[];
-  activeProject?: Project;
+  activeProject?: CollectionEntry<'project'>;
 }
 
 const { projects, activeProject } = Astro.props;
+
+const activeProjectData = activeProject
+  ? {
+      slug: activeProject.slug,
+      ...activeProject.data,
+    }
+  : null;
 
 const statusColors = {
   completed: '#00ff00',
@@ -32,6 +29,13 @@ const statusIcons = {
   'in-progress': '⚠',
   planned: '◯',
 };
+
+const renderedPage = activeProject
+  ? await activeProject.render()
+  : {
+      Content: '',
+      remarkPluginFrontmatter: {},
+    };
 ---
 
 <TerminalPrompt directory="/projects"> ls ./ </TerminalPrompt>
@@ -39,9 +43,9 @@ const statusIcons = {
 <br />
 
 {
-  projects.map(({ title, id, description, technologies, github, demo, status, featured }) => (
+  projects.map(({ slug, title, description, technologies, github, demo, status, featured }) => (
     <>
-      <a class="terminal-text" href={`/projects/${id}`}>
+      <a class="terminal-text" href={`/projects/${slug}`}>
         {title}.md
       </a>
       <br />
@@ -49,22 +53,45 @@ const statusIcons = {
   ))
 }
 {
-  activeProject && (
+  activeProjectData && (
     <>
-      <TerminalPrompt directory="/projects">neofetch ./{activeProject.id}.md</TerminalPrompt>
+      <TerminalPrompt directory="/projects">neofetch ./{activeProjectData.slug}.md</TerminalPrompt>
       <Neofetch
         entries={{
           Title: {
-            text: activeProject.title,
+            text: activeProjectData.title,
           },
           Description: {
-            text: activeProject.description,
+            text: activeProjectData.description,
           },
           Demo: {
-            text: activeProject.demo ?? 'Not available',
+            text: activeProjectData.demo ?? 'Not available',
+          },
+          GitHub: {
+            text: activeProjectData.github ?? 'Not available',
+            href: activeProjectData.github,
+          },
+          Technologies: {
+            text: activeProjectData.technologies.join(', '),
+          },
+          Status: {
+            text: `${statusIcons[activeProjectData.status || 'planned']} ${activeProjectData.status || 'planned'}`,
+          },
+          Featured: {
+            text: activeProjectData.featured ? 'Yes' : 'No',
+          },
+          'Start Date': {
+            text: activeProjectData.startDate
+              ? new Date(activeProjectData.startDate).toLocaleDateString()
+              : 'Not available',
           },
         }}
       />
+      {renderedPage && (
+        <div class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0 prose-li:list-decimal prose-li:text-sm prose-p:text-sm">
+          <renderedPage.Content />
+        </div>
+      )}
     </>
   )
 }
@@ -73,11 +100,6 @@ const statusIcons = {
 
 <style>
   .project-body {
-    padding: 20px;
-    background: #0a0a0a;
-  }
-
-  </Neofetch > </TerminalWindow > <style > .project-body {
     padding: 20px;
     background: #0a0a0a;
   }

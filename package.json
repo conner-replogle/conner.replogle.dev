@@ -20,8 +20,8 @@
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier -w .",
-     "build-deploy": "pnpm run build && pnpm run deploy",
-    "deploy":"pnpm dlx wrangler pages deploy dist --project-name conner-replogle-dev"
+    "build-deploy": "pnpm run build && pnpm run deploy",
+    "deploy": "pnpm dlx wrangler pages deploy dist --project-name conner-replogle-dev"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.8",
@@ -34,6 +34,8 @@
     "astro-icon": "^1.1.1",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
     "unpic": "^3.18.0"
   },
   "devDependencies": {

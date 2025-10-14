@@ -40,14 +40,9 @@ const { language, textDirection } = I18N;
     <ViewTransitions fallback="swap" />
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight">
-    <main
-      class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center p-4"
-    >
-      <div class="w-full max-w-6xl">
+  <body class="antialiased text-default bg-black overflow-clip">
         <slot />
-      </div>
-    </main>
+  
 
     <BasicScripts />
   </body>

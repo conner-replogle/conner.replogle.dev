@@ -1,6 +1,22 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 
+export interface Project{
+  slug: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  github?: string | undefined;
+  demo?: string | undefined;
+  status?: "completed" | "in-progress" | "planned" | undefined;
+  featured?: boolean | undefined;
+  image?: string | undefined;
+  startDate?: Date | undefined;
+  endDate?: Date | undefined;
+  
+
+}
+
 export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;
