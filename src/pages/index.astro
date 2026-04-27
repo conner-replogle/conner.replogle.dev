@@ -2,13 +2,29 @@
 import Layout from '~/layouts/Layout.astro';
 import Terminal from '~/components/Terminal.astro';
 import TerminalWindow from '~/components/TerminalWindow.astro';
+
 const metadata = {
-  title: 'Conner Replogle | Portfolio',
+  title: 'Conner Replogle — Software & Hardware Engineer',
 };
 ---
 
 <Layout metadata={metadata}>
-  <TerminalWindow title="Home">
-    <Terminal />
-  </TerminalWindow>
+  <div class="terminal-page">
+    <TerminalWindow>
+      <Terminal />
+    </TerminalWindow>
+  </div>
 </Layout>
+
+<style>
+  .terminal-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 24px;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+</style>

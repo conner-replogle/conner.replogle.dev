@@ -11,7 +11,7 @@ metadata:
   title:
     default: Conner Replogle 
     template: '%s — Conner Replogle'
-  description: "\U0001F680 Software & Hardware Engineer"
+  description: "Software & Hardware Engineer — Distributed Systems, Realtime Computing, and IoT"
   robots:
     index: true
     follow: true
@@ -23,8 +23,8 @@ metadata:
         height: 628
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
+    handle: '@conner_replogle'
+    site: '@conner_replogle'
     cardType: summary_large_image
 
 i18n:

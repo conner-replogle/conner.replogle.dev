@@ -1,79 +1,53 @@
 ---
-interface Props {
-  title: string;
-}
-const { title } = Astro.props;
+interface Props {}
 ---
 
-<div class="terminal-window w-full h-full overflow-y-scroll">
-  <!-- <div class="terminal-header"> -->
-  <!--   <div class="terminal-controls"> -->
-  <!--     <div class="control red"></div> -->
-  <!--     <div class="control yellow"></div> -->
-  <!--     <div class="control green"></div> -->
-  <!--   </div> -->
-  <!--   <div class="terminal-title">{title}</div> -->
-  <!-- </div> -->
-  <div class="terminal-body h-full">
+<div class="terminal-window">
+  <div class="terminal-header">
+    <div class="terminal-controls">
+      <div class="control close"></div>
+      <div class="control minimize"></div>
+      <div class="control maximize"></div>
+    </div>
+    <div class="terminal-title">conner@portfolio</div>
+    <div class="terminal-spacer"></div>
+  </div>
+  <div class="terminal-body">
     <slot />
   </div>
 </div>
 
 <style>
-  @media (max-width: 768px) {
-    .terminal-body {
-      padding: 15px;
-    }
-
-    .terminal-header {
-      padding: 10px 12px;
-    }
-
-    .terminal-title {
-      font-size: 12px;
-    }
-  }
-
-  /* .terminal-window { */
-  /*   animation: subtle-glow 3s ease-in-out infinite alternate; */
-  /* } */
-  /**/
-  /* @keyframes subtle-glow { */
-  /*   0% { */
-  /*     box-shadow: */
-  /*       0 0 50px rgba(0, 255, 255, 0.3), */
-  /*       0 0 100px rgba(255, 0, 255, 0.2), */
-  /*       inset 0 0 0 1px rgba(0, 255, 255, 0.1); */
-  /*   } */
-  /*   100% { */
-  /*     box-shadow: */
-  /*       0 0 60px rgba(0, 255, 255, 0.4), */
-  /*       0 0 120px rgba(255, 0, 255, 0.3), */
-  /*       inset 0 0 0 1px rgba(0, 255, 255, 0.2); */
-  /*   } */
-  /* } */
-  .terminal-body {
-    padding: 20px;
-    background: #0a0a0a;
-    min-height: 500px;
-    overflow-y: auto; /* Enable scrolling */
-  }
   .terminal-window {
-    font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-    border-radius: 12px;
-    max-width: 900px;
-    position: relative;
+    font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Inconsolata', 'Courier New', monospace;
+    background: #111216;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 860px;
     overflow: hidden;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.4),
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .terminal-window:hover {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.45),
+      0 16px 48px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
   .terminal-header {
-    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-    padding: 12px 16px;
+    background: #1a1b20;
+    padding: 12px 18px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    user-select: none;
   }
 
   .terminal-controls {
@@ -82,95 +56,62 @@ const { title } = Astro.props;
   }
 
   .control {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.15s ease;
   }
 
-  .control.red {
-    background: linear-gradient(135deg, #ff5f5f 0%, #ff2d2d 100%);
-    box-shadow: 0 0 10px rgba(255, 95, 95, 0.3);
+  .control:hover {
+    opacity: 0.75;
   }
 
-  .control.yellow {
-    background: linear-gradient(135deg, #ffff5f 0%, #ffff2d 100%);
-    box-shadow: 0 0 10px rgba(255, 255, 95, 0.3);
+  .control.close {
+    background: #ff5f57;
   }
 
-  .control.green {
-    background: linear-gradient(135deg, #5fff5f 0%, #2dff2d 100%);
-    box-shadow: 0 0 10px rgba(95, 255, 95, 0.3);
+  .control.minimize {
+    background: #febc2e;
+  }
+
+  .control.maximize {
+    background: #28c840;
   }
 
   .terminal-title {
-    color: #00ffff;
-    font-size: 14px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  .terminal-spacer {
+    width: 53px;
+  }
+
+  .terminal-body {
+    padding: 32px 36px;
+    background: #111216;
+    min-height: 420px;
+    overflow-y: auto;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #c9d1d9;
+  }
+
+  @media (max-width: 640px) {
+    .terminal-body {
+      padding: 18px 18px;
+      min-height: 340px;
+      font-size: 12.5px;
+    }
+
+    .terminal-header {
+      padding: 10px 14px;
+    }
+
+    .terminal-title {
+      font-size: 11.5px;
+    }
   }
 </style>
-<!-- <script is:inline>
-  // Add some interactive elements
-  document.addEventListener('DOMContentLoaded', function () {
-    // Progressive loading animation
-    const infoLines = document.querySelectorAll('.info-line[data-delay]');
-    infoLines.forEach((line) => {
-      const htmlElement = line;
-      const delay = parseInt(htmlElement.getAttribute('data-delay') || '0');
-      setTimeout(() => {
-        htmlElement.style.animationDelay = '0s';
-        htmlElement.style.opacity = '1';
-        htmlElement.style.transform = 'translateX(0)';
-      }, delay);
-    });
-
-    // Add hover effects to the terminal
-    const terminal = document.querySelector('.terminal-window');
-    if (terminal) {
-      terminal.addEventListener('mouseenter', function () {
-        this.style.transform = 'scale(1.02)';
-        this.style.transition = 'transform 0.3s ease';
-      });
-
-      terminal.addEventListener('mouseleave', function () {
-        this.style.transform = 'scale(1)';
-      });
-    }
-
-    // Add click sound effect simulation
-    const terminalBody = document.querySelector('.terminal-body');
-    if (terminalBody) {
-      terminalBody.addEventListener('click', function (event) {
-        // Create a visual feedback
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(0, 255, 255, 0.3);
-          width: 20px;
-          height: 20px;
-          animation: ripple 0.6s ease-out;
-          pointer-events: none;
-        `;
-
-        const rect = this.getBoundingClientRect();
-        const mouseEvent = event;
-        const x = mouseEvent.clientX - rect.left - 10;
-        const y = mouseEvent.clientY - rect.top - 10;
-
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-
-        this.style.position = 'relative';
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-          if (ripple.parentNode) {
-            ripple.parentNode.removeChild(ripple);
-          }
-        }, 600);
-      });
-    }
-  });
-</script> -->

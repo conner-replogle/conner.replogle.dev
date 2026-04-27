@@ -1,13 +1,24 @@
 ---
 import Layout from '../layouts/PageLayout.astro';
 
-
 const metadata = {
-  title: 'Conner Replogle | Portfolio',
+  title: 'Resume — Conner Replogle',
 };
 ---
 
 <Layout metadata={metadata}>
- 
-      
+  <section class="max-w-3xl mx-auto px-4 py-16 md:py-24 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4 dark:text-white">Resume</h1>
+    <p class="text-lg text-muted dark:text-slate-400 mb-8">
+      Download or view my resume below.
+    </p>
+    <a
+      href="/conner-replogle.pdf"
+      class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+      download
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+      Download Resume
+    </a>
+  </section>
 </Layout>

@@ -1,6 +1,4 @@
 ---
-// Neofetch Component
-
 type Props = {
   entries: Record<string, { text: string; href?: string }>;
 };
@@ -9,44 +7,39 @@ const { entries } = Astro.props;
 
 <div class="neofetch-display">
   <div class="ascii-art">
-    <pre
-      class="ascii-logo">
-        <slot name="logo">
-       ╔═══════════════════════════════════════╗
-       ║                                       ║
-       ║   ██████╗ ██████╗                     ║
-       ║  ██╔════╝ ██╔══██╗                    ║
-       ║  ██║      ██████╔╝                    ║
-       ║  ██║      ██╔══██╗                    ║
-       ║  ╚██████╗ ██║  ██║                    ║
-       ║   ╚═════╝ ╚═╝  ╚═╝                    ║
-       ║                                       ║
-       ║  ┌─┐┌─┐┌┐┌┌┐┌┌─┐┬─┐                   ║
-       ║  │  │ │││││││├┤ ├┬┘                   ║
-       ║  └─┘└─┘┘└┘┘└┘└─┘┴└─                   ║
-       ║                                       ║
-       ║  ┬─┐┌─┐┌─┐┬  ┌─┐┌─┐┬  ┌─┐             ║
-       ║  ├┬┘├┤ ├─┘│  │ ││ ┬│  ├┤              ║
-       ║  ┴└─└─┘┴  ┴─┘└─┘└─┘┴─┘└─┘             ║
-       ║                                       ║
-       ╚═══════════════════════════════════════╝
-       </slot>
+    <pre class="ascii-logo">
+╔═══════════════════════════════════════╗
+║                                       ║
+║   ██████╗ ██████╗                     ║
+║  ██╔════╝ ██╔══██╗                    ║
+║  ██║      ██████╔╝                    ║
+║  ██║      ██╔══██╗                    ║
+║  ╚██████╗ ██║  ██║                    ║
+║   ╚═════╝ ╚═╝  ╚═╝                    ║
+║                                       ║
+║  ┌─┐┌─┐┌┐┌┌┐┌┌─┐┬─┐                   ║
+║  │  │ │││││││├┤ ├┬┘                   ║
+║  └─┘└─┘┘└┘┘└┘└─┘┴└─                   ║
+║                                       ║
+║  ┬─┐┌─┐┌─┐┬  ┌─┐┌─┐┬  ┌─┐             ║
+║  ├┬┘├┤ ├─┘│  │ ││ ┬│  ├┤              ║
+║  ┴└─└─┘┴  ┴─┘└─┘└─┘┴─┘└─┘             ║
+║                                       ║
+╚═══════════════════════════════════════╝
     </pre>
   </div>
 
   <div class="system-info">
     {
       Object.entries(entries).map(([key, { href, text }], i) => (
-        <div class="info-line" data-delay={i * 100}>
-          <span class="key terminal-text">{key}:</span>
+        <div class="info-line" style={`animation-delay: ${i * 60}ms`}>
+          <span class="key">{key.toLowerCase()}</span>
           {href && href.length != 0 ? (
-            <span class="value">
-              <a class="terminal-text" href={href}>
-                {text}
-              </a>
-            </span>
+            <a class="value link" href={href} target={href.startsWith('http') ? '_blank' : undefined}>
+              {text}
+            </a>
           ) : (
-            <span class="value terminal-text">{text}</span>
+            <span class="value">{text}</span>
           )}
         </div>
       ))
@@ -57,9 +50,11 @@ const { entries } = Astro.props;
 <style>
   .neofetch-display {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin: 20px 0;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    margin: 16px 0 20px 0;
+    align-items: center;
+    justify-items: start;
   }
 
   .ascii-art {
@@ -69,93 +64,97 @@ const { entries } = Astro.props;
   }
 
   .ascii-logo {
-    color: #ff0000;
-    font-size: 10px;
+    color: #a5b4fc;
+    font-size: 9px;
     line-height: 1.1;
-    text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
-    background: linear-gradient(135deg, #ff0000 0%, #00ffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin: 0;
-    font-weight: bold;
+    font-weight: 600;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
   }
 
   .system-info {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
   }
 
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
+  .info-line {
+    display: flex;
+    font-size: 13px;
+    line-height: 1.5;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .key {
+    color: #a5b4fc;
+    font-weight: 600;
+    min-width: 96px;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .key::after {
+    content: ':';
+    color: rgba(165, 180, 252, 0.5);
+  }
+
+  .value {
+    color: #c9d1d9;
+  }
+
+  .value.link {
+    color: #7dd3fc;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    border-bottom: 1px solid rgba(125, 211, 252, 0.2);
+  }
+
+  .value.link:hover {
+    opacity: 0.75;
+    border-bottom-color: rgba(125, 211, 252, 0.5);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 640px) {
     .neofetch-display {
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 18px;
+      justify-items: center;
     }
 
     .ascii-logo {
-      font-size: 7px;
-    }
-
-    .key {
-      min-width: 100px;
-    }
-
-    .value {
-      word-break: break-word;
+      font-size: 7.5px;
     }
 
     .info-line {
-      gap: 4px;
+      font-size: 12px;
+    }
+
+    .key {
+      min-width: 84px;
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 420px) {
     .ascii-art {
       display: none;
     }
 
     .key {
-      min-width: 80px;
-    }
-
-    .value {
-      text-wrap: initial;
-    }
-  }
-
-  .info-line {
-    display: flex;
-    font-size: 14px;
-    line-height: 1.4;
-    opacity: 0;
-    transform: translateX(-10px);
-    animation: fadeInSlide 0.5s ease-out forwards;
-  }
-
-  .key {
-    color: #00ffff;
-    font-weight: bold;
-    min-width: 100px;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-    text-wrap: nowrap;
-    margin-right: 1rem;
-  }
-
-  .value {
-    color: #ffffff;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
-  }
-
-  @keyframes fadeInSlide {
-    from {
-      opacity: 0;
-      transform: translateX(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
+      min-width: 76px;
     }
   }
 </style>

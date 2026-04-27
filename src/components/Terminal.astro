@@ -1,152 +1,28 @@
 ---
 import Neofetch from './Neofetch.astro';
 import TerminalPrompt from './TerminalPrompt.astro';
-import TerminalWindow from './TerminalWindow.astro';
-
-// Terminal Neofetch Component with 80s Retro Style
 ---
 
-<TerminalPrompt> neofetch </TerminalPrompt>
+<TerminalPrompt>neofetch</TerminalPrompt>
+
 <Neofetch
   entries={{
-    User: {
-      text: 'Conner Replogle',
-      href: '',
-    },
-    Role: {
-      text: 'Software Engineer Intern',
-      href: '',
-    },
-    Location: {
-      text: 'Texas',
-      href: '',
-    },
-    Education: {
-      text: 'UT Dallas - Computer Engineering',
-      href: '',
-    },
-    Experience: {
-      text: 'Cloudflare SWE Intern 2025',
-      href: '',
-    },
-    Hobbies: {
-      text: 'Golf, MTB, Weightlifting',
-      href: '',
-    },
-    Languages: {
-        text: 'JS, TS, Rust, Go, C, Python',
-        href: '',
-      },
-    Main_Focus: {
-      text: 'Distrubuted & Realtime Systems',
-      href: '',
-    },
-    Side_Focus: {
-      text: 'Video Streaming (WebRTC), Open Source IOT Devices',
-      href: '',
-    },
-    Status: {
-      text: 'UTD Fall Semester, Working on Whitebox',
-      href: '',
-    },
-    GitHub: {
-      text: 'github.com/conner-replogle',
-      href: 'https://github.com/conner-replogle',
-    },
-    // Resume: {
-    //   text: './conner-replogle.pdf',
-    //   href: '/conner-replogle.pdf',
-    // },
-    Projects: {
-      text: '~/projects/',
-      href: '/projects',
-    },
-    LinkedIn: {
-      text: 'conner-replogle',
-      href: 'https://linkedin.com/in/conner-replogle',
-    },
-    Email: {
-      text: 'conner@replogle.dev',
-      href: 'mailto:conner@replogle.dev',
-    },
+    user: { text: 'Conner Replogle', href: '' },
+    role: { text: 'Software Engineer Intern', href: '' },
+    location: { text: 'Texas', href: '' },
+    education: { text: 'UT Dallas — Computer Engineering', href: '' },
+    experience: { text: 'Cloudflare — SWE Intern 2025', href: '' },
+    languages: { text: 'JS, TS, Rust, Go, C, Python', href: '' },
+    focus: { text: 'Distributed & Realtime Systems', href: '' },
+    interests: { text: 'Video Streaming, IoT, WebRTC', href: '' },
+    github: { text: 'github.com/conner-replogle', href: 'https://github.com/conner-replogle' },
+    linkedin: { text: 'linkedin.com/in/conner-replogle', href: 'https://linkedin.com/in/conner-replogle' },
+    email: { text: 'conner@replogle.dev', href: 'mailto:conner@replogle.dev' },
+    projects: { text: '~/projects', href: '/projects' },
+    resume: { text: './conner-replogle.pdf', href: '/conner-replogle.pdf' },
   }}
->
-  <!-- <div class="info-line colors-line" data-delay="1700"> -->
-  <!--   <span class="key">Colors:</span> -->
-  <!--   <span class="color-blocks"> -->
-  <!--     <span class="color-block color-1"></span> -->
-  <!--     <span class="color-block color-2"></span> -->
-  <!--     <span class="color-block color-3"></span> -->
-  <!--     <span class="color-block color-4"></span> -->
-  <!--     <span class="color-block color-5"></span> -->
-  <!--     <span class="color-block color-6"></span> -->
-  <!--     <span class="color-block color-7"></span> -->
-  <!--     <span class="color-block color-8"></span> -->
-  <!--   </span> -->
-  <!-- </div> -->
-</Neofetch>
-<TerminalPrompt blinking />
-<style>
-  .user {
-    color: #ff00ff;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(255, 0, 255, 0.3);
-  }
+/>
 
-  .path {
-    color: #00ffff;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-  }
-
-  .colors-line {
-    align-items: center;
-  }
-
-  .color-blocks {
-    display: flex;
-    gap: 4px;
-  }
-
-  .color-block {
-    width: 16px;
-    height: 16px;
-    border-radius: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .color-1 {
-    background: #ff5f5f;
-    box-shadow: 0 0 5px rgba(255, 95, 95, 0.3);
-  }
-  .color-2 {
-    background: #5fff5f;
-    box-shadow: 0 0 5px rgba(95, 255, 95, 0.3);
-  }
-  .color-3 {
-    background: #ffff5f;
-    box-shadow: 0 0 5px rgba(255, 255, 95, 0.3);
-  }
-  .color-4 {
-    background: #5f5fff;
-    box-shadow: 0 0 5px rgba(95, 95, 255, 0.3);
-  }
-  .color-5 {
-    background: #ff5fff;
-    box-shadow: 0 0 5px rgba(255, 95, 255, 0.3);
-  }
-  .color-6 {
-    background: #5fffff;
-    box-shadow: 0 0 5px rgba(95, 255, 255, 0.3);
-  }
-  .color-7 {
-    background: #ffffff;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-  }
-  .color-8 {
-    background: #808080;
-    box-shadow: 0 0 5px rgba(128, 128, 128, 0.3);
-  }
-
-  /* Glow effects for 80s aesthetic */
-</style>
+<TerminalPrompt 
+  blinking 
+/>
