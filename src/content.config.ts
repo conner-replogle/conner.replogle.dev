@@ -1,4 +1,5 @@
-import { z, defineCollection, glob } from 'astro:content';
+import { z, defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const metadataDefinition = () =>
   z
