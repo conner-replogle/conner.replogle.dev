@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import ProjectTerminal from '~/components/ProjectTerminal.astro';
+import TerminalPrompt from '~/components/TerminalPrompt.astro';
+import TerminalWindow from '~/components/TerminalWindow.astro';
+
+import type { CollectionEntry } from 'astro:content';
+
+const projects = await getCollection('project');
+
+const sortedProjects: CollectionEntry<'project'>[] = projects.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+
+  const dateA = a.data.endDate || a.data.startDate || new Date(0);
+  const dateB = b.data.endDate || b.data.startDate || new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
+
+const metadata = {
+  title: 'Projects — Conner Replogle',
+  description: 'All of my projects',
+};
+
+const projectsData = sortedProjects.map((p) => ({
+  slug: p.slug,
+  ...p.data,
+}));
+---
+
+<Layout metadata={metadata}>
+  <div class="terminal-page">
+    <TerminalWindow>
+      <TerminalPrompt>cd ./projects</TerminalPrompt>
+      <ProjectTerminal projects={projectsData} />
+    </TerminalWindow>
+  </div>
+</Layout>
+
+<style>
+  .terminal-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 24px;
+    overflow: auto;
+    box-sizing: border-box;
+  }
+</style>

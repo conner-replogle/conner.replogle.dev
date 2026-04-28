@@ -8,14 +8,9 @@ import TerminalWindow from '~/components/TerminalWindow.astro';
 import type { CollectionEntry } from 'astro:content';
 export const getStaticPaths = async () => {
   const projects = await getCollection('project');
-  return [
-    {
-      params: { slug: '' },
-    },
-    ...projects.map( (project) =>  ({
-      params: { slug: project.slug },
-    })),
-  ];
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+  }));
 };
 
 const { slug } = Astro.params;
